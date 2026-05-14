@@ -2,9 +2,7 @@
   <img src="assets/icon/StarQR.png" alt="StarQR Logo" width="120" />
   <h1>StarQR</h1>
   <p><b>Free, instant, and mobile-first URL to QR Code generator.</b></p>
-  <p><i>A project by Starverse</i></p>
-  <p>
-    <a href="https://starverse1130.github.io/StarQR/"><strong>Live Demo 🚀</strong></a>
+  <p><i>A project by Starverse</i> <a href="https://starverse1130.github.io/StarQR/"><strong>Live Demo 🚀</strong></a>
   </p>
 
   <p>
