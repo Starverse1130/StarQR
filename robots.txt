@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://starverse1130.github.io/StarQR/sitemap.xml

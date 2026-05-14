@@ -1,0 +1,88 @@
+/* =========================================================
+   StarQR — reset.css
+   Browser Reset & Base Styles
+   Normalizes cross-browser defaults and sets global rules.
+   ========================================================= */
+
+/* ── Universal Box-Sizing Reset ───────────────────────── */
+/* Makes padding/border included in element width/height  */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent; /* Remove tap flash on mobile */
+}
+
+/* ── HTML Root ────────────────────────────────────────── */
+html {
+  font-size: 16px;                    /* 1rem = 16px baseline           */
+  scroll-behavior: smooth;            /* Smooth scroll for anchor links */
+  -webkit-text-size-adjust: 100%;     /* Prevent iOS font-size boost   */
+}
+
+/* ── Body ─────────────────────────────────────────────── */
+body {
+  font-family: var(--font);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background-color: var(--bg);
+  min-height: 100dvh;                 /* dvh = dynamic viewport height  */
+  overflow-x: hidden;                 /* Prevent horizontal scroll      */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* iOS safe area insets — prevents content from hiding behind notch */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* ── Accessibility: Reduced Motion ────────────────────── */
+/* Users who prefer less motion get instant transitions   */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Accessibility: Skip-to-Content Link ──────────────── */
+/* Hidden by default, appears on Tab key press for        */
+/* keyboard users to skip past decorative elements.       */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  transition: top var(--dur-fast) var(--ease-out);
+}
+
+/* Show skip link when focused via keyboard */
+.skip-link:focus {
+  top: 16px;
+  outline: 3px solid var(--primary-glow);
+  outline-offset: 2px;
+}
+
+/* ── Focus-Visible Styles ─────────────────────────────── */
+/* Modern focus indicator: only shown for keyboard users, */
+/* not for mouse/touch clicks. Improves accessibility.    */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Remove default outline for mouse/touch users */
+:focus:not(:focus-visible) {
+  outline: none;
+}

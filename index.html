@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- ============================
+       SEO — Primary Meta Tags
+       ============================ -->
+  <title>StarQR — Free URL to QR Code Generator | Instant & Mobile-First</title>
+  <meta name="description" content="StarQR instantly converts any URL into a downloadable QR code. Free, fast, mobile-first QR generator — no signup required." />
+  <meta name="keywords" content="QR code generator, URL to QR, free QR code, mobile QR generator, download QR code, StarQR" />
+  <meta name="author" content="StarQR" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://starverse1130.github.io/StarQR/" />
+
+  <!-- ============================
+       SEO — Open Graph (Facebook, LinkedIn, etc.)
+       ============================ -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="StarQR" />
+  <meta property="og:title" content="StarQR — Free URL to QR Code Generator" />
+  <meta property="og:description" content="Instantly convert any URL into a downloadable QR code. Fast, minimal, mobile-first." />
+  <meta property="og:url" content="https://starverse1130.github.io/StarQR/" />
+  <meta property="og:image" content="https://starverse1130.github.io/StarQR/assets/icon/android-chrome-512x512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="StarQR Logo — QR Code Generator" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- ============================
+       SEO — Twitter Card
+       ============================ -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="StarQR — Free URL to QR Code Generator" />
+  <meta name="twitter:description" content="Instantly convert any URL into a downloadable QR code. Fast, minimal, mobile-first." />
+  <meta name="twitter:image" content="https://starverse1130.github.io/StarQR/assets/icon/android-chrome-512x512.png" />
+  <meta name="twitter:image:alt" content="StarQR Logo" />
+
+  <!-- ============================
+       PWA & Theme
+       ============================ -->
+  <meta name="theme-color" content="#4F46E5" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="StarQR" />
+
+  <!-- ============================
+       Icons & Manifest
+       ============================ -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon/favicon-16x16.png" />
+  <link rel="manifest" href="assets/icon/site.webmanifest" />
+  <link rel="shortcut icon" href="assets/icon/favicon.ico" />
+
+  <!-- ============================
+       Fonts — Preconnect + Load
+       ============================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- ============================
+       Font Awesome 6 Free CDN
+       ============================ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- ============================
+       Stylesheets (loaded in cascade order)
+       ============================ -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/utilities.css" />
+
+  <!-- ============================
+       SEO — Structured Data (JSON-LD)
+       Tells search engines this is a web application
+       ============================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "StarQR",
+    "url": "https://starverse1130.github.io/StarQR/",
+    "description": "Instantly convert any URL into a downloadable QR code. Free, fast, mobile-first QR generator.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "screenshot": "https://starverse1130.github.io/StarQR/assets/icon/android-chrome-512x512.png",
+    "featureList": "URL to QR conversion, QR code download as PNG, One-click URL copy, Mobile-first responsive design",
+    "author": {
+      "@type": "Organization",
+      "name": "StarQR"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============================
+       Skip Link — Keyboard Accessibility
+       Lets keyboard/screen-reader users jump past
+       decorative elements directly to the main content.
+       ============================ -->
+  <a href="#app" class="skip-link">Skip to main content</a>
+
+  <!-- Decorative background blobs (GPU composited, hidden from assistive tech) -->
+  <div class="bg-blob bg-blob--1" aria-hidden="true"></div>
+  <div class="bg-blob bg-blob--2" aria-hidden="true"></div>
+
+  <!-- ============================
+       HEADER — Outside <main> for proper semantics
+       Contains branding (logo + app name + tagline).
+       ============================ -->
+  <header class="app__header" role="banner">
+    <div class="logo">
+      <img
+        src="assets/icon/StarQR.png"
+        alt="StarQR — QR Code Generator"
+        class="logo__image"
+        width="70"
+        height="70"
+        fetchpriority="high"
+      />
+      <div class="logo__text">
+        <h1 class="logo__name">StarQR</h1>
+        <p class="app__subtitle">Generate QR instantly</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================
+       MAIN CONTENT
+       All interactive/functional content lives here.
+       ============================ -->
+  <main class="app" id="app">
+
+    <!-- ===== INPUT SECTION ===== -->
+    <section class="input-section" aria-label="URL Input">
+
+      <!-- Input wrapper with floating label pattern -->
+      <div class="input-wrapper" id="input-wrapper">
+        <label for="url-input" class="input-label">Paste your URL</label>
+        <div class="input-field-group">
+          <span class="input-icon input-icon--left" aria-hidden="true">
+            <i class="fa-solid fa-link"></i>
+          </span>
+          <input
+            type="url"
+            id="url-input"
+            class="input-field"
+            placeholder="https://github.com"
+            autocomplete="url"
+            autocorrect="off"
+            autocapitalize="none"
+            spellcheck="false"
+          />
+          <button
+            class="input-clear-btn"
+            id="clear-input-btn"
+            aria-label="Clear URL input"
+            title="Clear"
+            type="button"
+            hidden
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <!-- Error message — aria-live announces changes to screen readers -->
+        <p class="input-error" id="url-error" role="alert" aria-live="polite" hidden>
+          <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+          <span id="url-error-text">Please enter a valid URL</span>
+        </p>
+      </div>
+
+      <!-- Generate Button -->
+      <button
+        class="btn btn--primary btn--generate"
+        id="generate-btn"
+        aria-label="Generate QR code"
+        type="button"
+      >
+        <span class="btn__spinner" aria-hidden="true"></span>
+        <i class="fa-solid fa-qrcode btn__icon" aria-hidden="true"></i>
+        <span class="btn__text">Generate QR</span>
+      </button>
+
+    </section>
+
+    <!-- ===== QR PREVIEW CARD ===== -->
+    <section class="qr-section" aria-label="QR Code Preview">
+
+      <div class="qr-card" id="qr-card">
+
+        <!-- Empty State — shown before QR is generated -->
+        <div class="qr-empty" id="qr-empty" aria-label="QR code will appear here">
+          <div class="qr-empty__icon-wrap" aria-hidden="true">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          <p class="qr-empty__text">Paste a URL and generate your QR instantly</p>
+        </div>
+
+        <!-- QR Output — revealed after successful generation -->
+        <div class="qr-output" id="qr-output" hidden>
+          <div class="qr-image-wrap" id="qr-image-wrap" role="img" aria-label="Generated QR code">
+            <!-- qrcode.js renders a <canvas> or <img> here -->
+          </div>
+          <div class="qr-domain" id="qr-domain">
+            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+            <span id="qr-domain-text" class="qr-domain__text"></span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== ACTION BUTTONS ===== -->
+      <div class="action-row" id="action-row" hidden>
+        <button
+          class="btn btn--action btn--download"
+          id="download-btn"
+          aria-label="Download QR code as PNG"
+          type="button"
+        >
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          <span>Download</span>
+        </button>
+
+        <button
+          class="btn btn--action btn--copy"
+          id="copy-btn"
+          aria-label="Copy URL to clipboard"
+          type="button"
+        >
+          <i class="fa-solid fa-copy icon-copy" aria-hidden="true"></i>
+          <i class="fa-solid fa-check icon-check" aria-hidden="true" hidden></i>
+          <span>Copy</span>
+        </button>
+
+        <button
+          class="btn btn--action btn--clear"
+          id="clear-btn"
+          aria-label="Clear and reset"
+          type="button"
+        >
+          <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+          <span>Clear</span>
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ============================
+       FOOTER — Proper semantic landmark
+       ============================ -->
+  <footer class="app__footer" role="contentinfo">
+    <p>Made with <i class="fa-solid fa-heart" aria-hidden="true"></i> by <strong>StarQR</strong></p>
+  </footer>
+
+  <!-- ============================
+       TOAST — Notification popup
+       Appears temporarily after copy/download actions.
+       ============================ -->
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    hidden
+  >
+    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+    <span id="toast-text">Copied to clipboard</span>
+  </div>
+
+  <!-- ============================
+       Scripts — Loaded at bottom for performance
+       Order matters: state → utils → ui → qr → actions → main
+       ============================ -->
+  <script src="libs/qrcode.min.js" defer></script>
+  <script src="js/state.js" defer></script>
+  <script src="js/utils.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/qr.js" defer></script>
+  <script src="js/actions.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

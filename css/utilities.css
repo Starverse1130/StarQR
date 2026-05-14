@@ -1,0 +1,93 @@
+/* =========================================================
+   StarQR — utilities.css
+   Utility Animations, Responsive Breakpoints, Scrollbar,
+   and Selection Styles.
+   ========================================================= */
+
+/* ── UTILITY ANIMATIONS ───────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── RESPONSIVE — TABLET & DESKTOP (≥768px) ──────────── */
+/* Scale up QR code and button sizes on larger screens    */
+@media (min-width: 768px) {
+  .app {
+    padding: var(--space-xl) var(--space-sm);
+    justify-content: center;
+  }
+
+  .qr-image-wrap {
+    width: 252px;
+    height: 252px;
+  }
+
+  .qr-image-wrap canvas,
+  .qr-image-wrap img {
+    width: 232px !important;
+    height: 232px !important;
+    max-width: 232px !important;
+    max-height: 232px !important;
+  }
+
+  .qr-card {
+    min-height: 340px;
+  }
+
+  .btn--generate {
+    height: 54px;
+  }
+}
+
+/* ── RESPONSIVE — SMALL PHONE (≤360px) ───────────────── */
+/* Tighter spacing and smaller QR for narrow screens      */
+@media (max-width: 360px) {
+  .app {
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xs) var(--space-lg);
+  }
+
+  .logo__name {
+    font-size: 28px;
+  }
+
+  .qr-card {
+    min-height: 250px;
+  }
+
+  .qr-image-wrap {
+    width: 190px;
+    height: 190px;
+    padding: 8px;
+  }
+
+  .qr-image-wrap canvas,
+  .qr-image-wrap img {
+    width: 170px !important;
+    height: 170px !important;
+    max-width: 170px !important;
+    max-height: 170px !important;
+  }
+
+  .btn--action {
+    height: 44px;
+    font-size: 12px;
+  }
+}
+
+/* ── SCROLLBAR (Minimal) ──────────────────────────────── */
+/* Custom thin scrollbar for WebKit browsers              */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+/* ── TEXT SELECTION ────────────────────────────────────── */
+/* Brand-colored text selection highlight                  */
+::selection {
+  background: var(--primary-light);
+  color: var(--primary);
+}

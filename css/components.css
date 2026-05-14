@@ -1,0 +1,632 @@
+/* =========================================================
+   StarQR — components.css
+   UI Components — Input, Buttons, QR Card, Toast
+   Each section is self-contained and reusable.
+   ========================================================= */
+
+/* ══════════════════════════════════════════════════════════
+   INPUT SECTION
+   URL input field with floating label, clear button,
+   and inline error messaging.
+   ══════════════════════════════════════════════════════════ */
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  animation: sectionEntrance 450ms var(--ease-out) 80ms both;
+}
+
+@keyframes sectionEntrance {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Input Wrapper ── */
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label above the input field */
+.input-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  padding-left: 2px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+/* Container for input + icons + clear button */
+.input-field-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Input Field ── */
+.input-field {
+  width: 100%;
+  height: 56px;
+  padding: 0 48px 0 44px;            /* Space for left icon + right clear btn */
+  background: var(--card-solid);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font);
+  font-size: var(--text-md);
+  font-weight: 400;
+  color: var(--text-primary);
+  outline: none;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+  touch-action: manipulation;         /* Optimize for mobile touch */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Focus state — purple glow ring */
+.input-field:focus {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-glow);
+  background: #fff;
+}
+
+/* Change label color when input is focused */
+.input-wrapper:focus-within .input-label {
+  color: var(--primary);
+}
+
+/* ── Input Icons ── */
+/* Positioned absolutely inside the input field */
+.input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  pointer-events: none;               /* Don't intercept clicks */
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.input-icon--left {
+  left: 14px;
+}
+
+/* Size Font Awesome icons inside input */
+.input-icon--left i {
+  width: 18px;
+  height: 18px;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* Icon turns purple when input is focused */
+.input-wrapper:focus-within .input-icon--left {
+  color: var(--primary);
+}
+
+/* ── Clear Button (× inside input) ── */
+.input-clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Show clear button when not hidden */
+.input-clear-btn:not([hidden]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Size the × icon */
+.input-clear-btn i {
+  font-size: 12px;
+}
+
+/* Hover: red background hint */
+.input-clear-btn:hover {
+  background: var(--error-light);
+  color: var(--error);
+}
+
+/* Tap: scale down feedback */
+.input-clear-btn:active {
+  transform: translateY(-50%) scale(0.90);
+}
+
+/* ── Error Message ── */
+.input-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--error);
+  padding: 0 2px;
+  animation: errorShake 300ms ease-in-out;
+}
+
+/* Size the error icon */
+.input-error i {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.input-error[hidden] { display: none; }
+
+/* Error state — red border + glow on the input field */
+.input-wrapper--error .input-field {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* Shake animation for error feedback */
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-6px); }
+  30%       { transform: translateX(5px); }
+  45%       { transform: translateX(-4px); }
+  60%       { transform: translateX(3px); }
+  75%       { transform: translateX(-2px); }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   BUTTONS
+   Base button styles + variants for generate, download,
+   copy, and clear actions.
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Base Button ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: var(--text-base);
+  cursor: pointer;
+  touch-action: manipulation;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+  -webkit-appearance: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Tap feedback for all buttons */
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* ── Generate Button (Primary CTA) ── */
+.btn--generate {
+  width: 100%;
+  height: 52px;
+  background: linear-gradient(135deg, var(--primary) 0%, #6366F1 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
+  letter-spacing: 0.1px;
+}
+
+.btn--generate:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #4F46E5 100%);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.42);
+  transform: translateY(-1px);
+}
+
+.btn--generate:active:not(:disabled) {
+  transform: scale(0.98) translateY(0);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.28);
+}
+
+.btn--generate:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Size the QR icon inside generate button */
+.btn--generate .btn__icon {
+  font-size: 16px;
+}
+
+/* ── Loading Spinner ── */
+/* Hidden by default, shown when .btn--loading is active */
+.btn__spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: spin 600ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Loading state classes */
+.btn--loading .btn__spinner { display: block; }
+.btn--loading .btn__icon    { display: none; }
+.btn--loading .btn__text    { opacity: 0.85; }
+
+/* ── Action Buttons Row ── */
+/* 3-column grid for Download, Copy, Clear */
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-xs);
+  margin-top: 4px;
+}
+
+.action-row[hidden] { display: none; }
+
+/* ── Action Button Base ── */
+.btn--action {
+  height: 48px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  flex-direction: column;
+  gap: 4px;
+  border: 1.5px solid transparent;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+/* Size Font Awesome icons in action buttons */
+.btn--action i {
+  font-size: 14px;
+}
+
+/* ── Download Button ── */
+.btn--download {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: rgba(79, 70, 229, 0.15);
+}
+
+.btn--download:hover:not(:disabled) {
+  background: rgba(79, 70, 229, 0.13);
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.14);
+}
+
+/* ── Copy Button ── */
+.btn--copy {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: rgba(6, 182, 212, 0.18);
+}
+
+.btn--copy:hover:not(:disabled) {
+  background: rgba(6, 182, 212, 0.16);
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.16);
+}
+
+/* ── Clear Button ── */
+.btn--clear {
+  background: var(--danger-light);
+  color: var(--danger);
+  border-color: rgba(248, 113, 113, 0.18);
+}
+
+.btn--clear:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.16);
+  border-color: var(--danger);
+  box-shadow: 0 2px 8px rgba(248, 113, 113, 0.14);
+}
+
+/* ── Copy Icon → Checkmark Morphing ── */
+/* When "Copied", the copy icon hides and checkmark appears */
+.icon-check { display: none; }
+
+.btn--copy.copied .icon-copy  { display: none; }
+.btn--copy.copied .icon-check {
+  display: block;
+  animation: iconPop var(--dur-normal) var(--ease-spring) both;
+}
+.btn--copy.copied {
+  background: var(--success-light);
+  color: var(--success);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+@keyframes iconPop {
+  from { transform: scale(0.5) rotate(-20deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg);     opacity: 1; }
+}
+
+/* ── Download Bounce Animation ── */
+.btn--download:active i {
+  animation: downloadBounce 300ms var(--ease-spring);
+}
+
+@keyframes downloadBounce {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(3px); }
+  70%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   QR CODE SECTION
+   Preview card with empty state, QR output, and domain
+   label. Uses glassmorphism for premium feel.
+   ══════════════════════════════════════════════════════════ */
+
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+  animation: sectionEntrance 500ms var(--ease-out) 160ms both;
+}
+
+/* ── QR Card ── */
+/* Glassmorphism card with backdrop blur */
+.qr-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    box-shadow var(--dur-slow) var(--ease-out),
+    border-color var(--dur-slow) var(--ease-out);
+}
+
+/* Subtle gloss overlay for premium feel */
+.qr-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
+}
+
+/* ── Empty State ── */
+/* Shown before any QR code is generated */
+.qr-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+  animation: fadeIn var(--dur-slow) var(--ease-out) both;
+}
+
+/* Pulsing icon wrapper */
+.qr-empty__icon-wrap {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  box-shadow: var(--shadow-xs);
+  animation: idlePulse 2.8s ease-in-out infinite;
+}
+
+/* Size Font Awesome icon in empty state */
+.qr-empty__icon-wrap i {
+  font-size: 28px;
+}
+
+@keyframes idlePulse {
+  0%, 100% { box-shadow: var(--shadow-xs), 0 0 0 0 var(--primary-glow); transform: scale(1); }
+  50%       { box-shadow: var(--shadow-xs), 0 0 0 8px transparent; transform: scale(1.03); }
+}
+
+/* Instructional text */
+.qr-empty__text {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 220px;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+/* ── QR Output ── */
+/* Container for the generated QR code + domain label */
+.qr-output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  animation: qrReveal var(--dur-slow) var(--ease-spring) both;
+}
+
+.qr-output[hidden] { display: none; }
+
+@keyframes qrReveal {
+  from { opacity: 0; transform: scale(0.88) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* QR image container — fixed size prevents layout shift (CLS) */
+.qr-image-wrap {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  box-shadow:
+    var(--shadow-sm),
+    0 0 0 1px rgba(229, 234, 242, 0.8);
+  flex-shrink: 0;
+  overflow: hidden;
+  line-height: 0;               /* Remove inline gap under canvas   */
+  position: relative;
+}
+
+/* Force QR canvas/img to exact size — prevents scanner issues */
+.qr-image-wrap canvas,
+.qr-image-wrap img {
+  width: 200px !important;
+  height: 200px !important;
+  max-width: 200px !important;
+  max-height: 200px !important;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+/* ── Domain Label ── */
+/* Shows the URL domain below the QR code */
+.qr-domain {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  max-width: 240px;
+}
+
+/* Size the globe icon */
+.qr-domain i {
+  font-size: 12px;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+
+/* Truncate long domain names */
+.qr-domain__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── QR Card States ── */
+/* "Filled" state — enhanced shadow when QR is present */
+.qr-card--filled {
+  border-color: rgba(79, 70, 229, 0.15);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Collapse animation on clear */
+.qr-card--collapse {
+  animation: qrCollapse var(--dur-xslow) var(--ease-in) both;
+}
+
+@keyframes qrCollapse {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.92); }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   TOAST NOTIFICATION
+   Fixed-position popup for success/error feedback.
+   Slides up from the bottom, auto-dismisses.
+   ══════════════════════════════════════════════════════════ */
+
+.toast {
+  position: fixed;
+  bottom: calc(var(--space-lg) + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text-primary);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.25);
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity var(--dur-normal) var(--ease-out),
+    transform var(--dur-normal) var(--ease-spring);
+  white-space: nowrap;
+}
+
+.toast[hidden] { display: none; }
+
+/* Size the checkmark icon */
+.toast i {
+  font-size: 14px;
+  color: var(--success);
+}
+
+/* Toast visible state (toggled by JS) */
+.toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Toast hiding state — slides back down */
+.toast--hiding {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  transition:
+    opacity var(--dur-fast) var(--ease-in),
+    transform var(--dur-fast) var(--ease-in);
+}
